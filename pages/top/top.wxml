@@ -1,0 +1,75 @@
+<view class="gedan">
+  <view class="info_box">
+    <view class="info_box__bd">
+      <view class="album">
+        <view class="album__media">
+          <image wx:if="{{list.songlist[0].data.albummid}}" src="https://y.gtimg.cn/music/photo_new/T002R300x300M000{{list.songlist[0].data.albummid}}.jpg?max_age=2592000" class="album__cover"></image>
+        </view>
+        <view class="album__bd">
+          <view class="album__name">
+            {{list.topinfo.ListName}}
+          </view>
+          <view class="fans_number" wx:if="{{list.day_of_year != ''}}">
+            第{{list.day_of_year}}天
+          </view>
+          <view class="fans_number" wx:else>
+            第{{list.date}}周
+          </view>
+          <view class="album__desc">
+          {{list.topinfo.info}}
+          </view>
+        </view>
+      </view>
+
+      <view class="opt_box">
+        <view class="btn_play_all" data-id="{{disstid}}" bindtap='playAll'>
+          播放全部
+        </view>
+      </view>
+    </view>
+    <image wx:if="{{list.songlist[0].data.albummid}}" src="https://y.gtimg.cn/music/photo_new/T002R300x300M000{{list.songlist[0].data.albummid}}.jpg?max_age=2592000" class="info_box__bg"></image>
+  </view>
+
+  <view class="wrap">
+    <view class="main">
+      <view class="count_box">
+        <view class="count_box__desc">
+          排行榜 <view class="count_box__number" style="display:inline-block;">共{{list.cur_song_num}}首</view>
+        </view>
+      </view>
+
+      <view class="qui_list">
+        <block wx:for="{{list.songlist}}" wx:key="{{list.songlist}}">
+          <view style="opacity:{{item.data.alertid == 0? '0.5':'1'}};" class="qui_list__item" data-songid="{{item.data.songid}}" data-num="{{index}}" data-mid="{{item.data.songmid}}" bindtap='musicPlay'>
+          <view class="qui_list__order" style="color:{{index < 3 ? '#FF400B':''}};">{{index + 1}}</view>
+            <view class="qui_list__bd">
+              <view class="qui_list__box">
+                <view class="qui_list__tit">
+                  {{item.data.songname}}
+                </view>
+                <view class="qui_list__desc">
+                  <view style="display:inline-block;" wx:for="{{item.data.singer}}" wx:key="{{item.data.singer}}" wx:for-item="singer" wx:for-index="singerNum">
+                    {{singerNum > 0 ? ' / ' : ''}}{{singer.name}} 
+                  </view>· {{item.data.albumdesc}}
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <!-- <view wx:if="{{havaMusic}}" class="check_more" bindtap='getMoreMusic'>点击加载更多歌曲</view> -->
+
+      <view class="qui_tit">
+        <view class="qui_tit__text">
+          简介
+        </view>
+      </view>
+      <view class="intro">
+        <text decode>
+        {{list.topinfo.info}}
+        </text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,74 @@
+<view class="gedan">
+  <view class="info_box">
+    <view class="info_box__bd">
+      <view class="album">
+        <view class="album__media">
+          <image src="{{list.logo}}" class="album__cover"></image>
+        </view>
+
+        <view class="album__bd">
+          <view class="album__name">
+            {{list.dissname}}
+          </view>
+          <view class="author">
+            <image src="{{list.headurl}}" class="author__avatar"></image>
+            <view class="author__name">
+              {{list.nickname}}
+            </view>
+          </view>
+
+          <view class="album__desc">
+          播放量：{{list.visitnum}}
+          </view>
+        </view>
+      </view>
+
+      <view class="opt_box">
+        <view class="btn_play_all" data-id="{{disstid}}" bindtap='playAll'>
+          播放全部
+        </view>
+      </view>
+    </view>
+    <image src="{{list.logo}}" class="info_box__bg"></image>
+  </view>
+
+  <view class="wrap">
+    <view class="main">
+      <view class="count_box">
+        <view class="count_box__desc">
+          歌单 <view class="count_box__number" style="display:inline-block;">共{{list.songnum}}首</view>
+        </view>
+      </view>
+
+      <view class="qui_list">
+        <block wx:for="{{list.songlist}}" wx:key="{{list.songlist}}">
+          <view style="opacity:{{item.pay.pay_play == 1? '0.5':'1'}};" class="qui_list__item" data-songid="{{item.id}}" data-mid="{{item.album.mid}}" data-name="{{item.title}}" data-singer="{{item.singer[0].name}}" data-num="{{index}}" bindtap="musicPlay">
+            <view class="qui_list__bd">
+              <view class="qui_list__box">
+                <view class="qui_list__tit">
+                  {{item.title}}
+                </view>
+                <view class="qui_list__desc">
+                  {{item.album.title}}               
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view wx:if="{{havaMusic}}" class="check_more" bindtap='getMoreMusic'>点击加载更多歌曲</view>
+
+      <view class="qui_tit">
+        <view class="qui_tit__text">
+          歌单简介
+        </view>
+      </view>
+      <view class="intro">
+        <text decode>
+        {{list.desc}}
+        </text>
+      </view>
+    </view>
+  </view>
+</view>

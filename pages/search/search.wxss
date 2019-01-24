@@ -1,0 +1,210 @@
+page {
+  background-color: #fff;
+}
+
+
+.page__bd {
+  position: fixed;
+  top:0;
+  width:100%;
+  background: #f4f4f4;
+  /* padding: 20rpx; */
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+  z-index:1;
+}
+.weui-search-bar {
+  width:100%;
+}
+.weui-search-bar__cancel-btn {
+  color:#000;
+  font-size:24rpx;
+}
+.weui-search-bar__input {
+  color:#000;
+}
+/* 自己写的搜索框 */
+.search-box-wrapper {
+  position: fixed;
+  top:0;
+  width:95%;
+  background: #f4f4f4;
+  padding: 20rpx;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-align: center;
+  z-index:1;
+}
+.search-box {
+  position: relative;
+  border-radius: 3px;
+  background: #fff;
+  height: 40rpx;
+  line-height: 40rpx;
+  padding: 16rpx 24rpx 16rpx 70rpx;
+  -webkit-box-flex: 1;
+}
+.search-box .cc {
+  position: absolute;
+  top: 9px;
+  right: 12px;
+  width: 18px;
+  height: 18px;
+  background: #b1b1b1;
+  text-indent: -9999px;
+  border-radius: 99px;
+  z-index:999;
+}
+.icon {
+  position: absolute;
+  top: 18rpx;
+  left: 20rpx;
+  width: 36rpx;
+  height: 36rpx;
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* text-indent: -999px; */
+}
+input {
+  min-height: 40rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  width: 100%;
+  color: rgba(0,0,0,.3);
+  border: none;
+  -webkit-appearance: none;
+  font-size: 14px;
+}
+.input-placeholder {
+  font-size:14px;
+  color: rgba(0,0,0,.3);
+}
+.cancel {
+  padding-right: 20rpx;
+  padding-left: 20rpx;
+  font-size: 14px;
+  height: 72rpx;
+  line-height: 72rpx;
+}
+.hot_keys {
+  background: #fff;
+  padding: 30rpx 30rpx 20rpx 30rpx;
+  margin-top:96rpx;
+}
+.record_keys {
+  margin-top:96rpx;
+}
+.search_result {
+  margin-top:96rpx;
+}
+.title {
+  color: rgba(0,0,0,.6);
+  margin-bottom: 16rpx;
+}
+.list {
+  display: inline-block;
+  padding: 10rpx 20rpx;
+  margin: 0 40rpx 20rpx 0;
+  border-radius: 12rpx;
+  background: rgb(146, 144, 144);
+  font-size: 14px;
+  color: #fff;
+}
+
+.key_list {
+  border-top: 1px solid #ededed;
+  padding: 0 30rpx;
+  position: relative;
+  display: block;
+  height: 88rpx;
+  line-height: 88rpx;
+}
+.key_list .clock {
+  position: absolute;
+  left: 60rpx;
+  top: 24rpx;
+  width: 40rpx;
+  height: 40rpx;
+  text-indent: -999px;
+}
+.key_list .key_text {
+  position: absolute;
+  left: 140rpx;
+  right: 100rpx;
+  display: block;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #000;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.key_list .close {
+  position: absolute;
+  right: 60rpx;
+  top: 24rpx;
+  width: 40rpx;
+  height: 40rpx;
+}
+.clear {
+  text-align: center;
+  height: 88rpx;
+  line-height: 88rpx;
+  color:#47c88a;
+  font-size:14px;
+}
+.search_page {
+  position:relative;
+  height: 110rpx;
+  padding-left: 112rpx;
+  overflow: hidden;
+}
+.search_page::after {
+  content:"";
+  position:absolute;
+  height: 1px;
+  top:0;
+  left:0;
+  right: 0;
+  background:#e5e5e5;
+}
+.search_page .Micon {
+  position: absolute;
+  top: 36rpx;
+  left: 36rpx;
+  width: 44rpx;
+  height: 40rpx;
+  background-position: 0 0;
+}
+.search_page .media {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 80rpx;
+}
+.search_page .title {
+  margin: 20rpx 0 2px;
+  line-height: 36rpx;
+  font-size: 16px;
+  font-weight: normal;
+  color: #000;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.search_page .name {
+  color:#80808080;
+  font-size:14px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.search_result .loadAll {
+  line-height: 80rpx;
+  text-align: center;
+  color: #808080;
+}

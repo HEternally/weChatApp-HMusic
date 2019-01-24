@@ -1,0 +1,254 @@
+<view wx:if="{{haveMusicStorage}}" class="playSong" style="height:{{showList ? '100vh':''}};overflow:hidden;">
+  <view class="main">
+    <view class="main_bd">
+      <view class="song_info">
+        <view class="song_info_hd">
+          <view class="song_name">
+            <view class="song_name__text">
+              {{track_info.title}}
+            </view>
+            <!-- <picker bindchange="musicChange" bindcancel="musicCancel" value="{{num}}" range="{{MusicName}}"> -->
+              <image class="icon_playlist" src="../../img/playlist.png" bindtap="showPlayList"></image>
+            <!-- </picker> -->
+          </view>
+
+          <view class="singer_name">
+            <block wx:for="{{singer}}" wx:key="singer">
+              <view class="item_name">{{index > 0 ? ' / ' : ''}}{{item.name}}</view>
+            </block>
+          </view>
+        </view>
+
+        <view class="song_info_bd">
+          <view class="album_cover">
+            <image wx:if="{{track_info.album.mid}}" class="album_cover__img" src="https://y.gtimg.cn/music/photo_new/T002R300x300M000{{track_info.album.mid}}.jpg?max_age=2592000"></image>
+          </view>
+
+          <view class="lyric">
+            <view class="lyric__bd">
+              <scroll-view scroll-y style="height:100%;white-space:nowrap;font-size:15px;" scroll-into-view="{{toView}}" scroll-with-animation>
+                <block wx:for="{{lyrics}}" wx:for-item="lyric" wx:key="{{lyric}}">
+                  <view style="color:{{toView == lyric.id ? '#31c27c':''}}" class="lyric__para" data-time="{{lyric.t}}" id="{{lyric.id}}">
+                    {{lyric.c}}
+                  </view>
+                </block>
+              </scroll-view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="opt">
+        <view wx:if="{{havePop}}" class="opt__item" bindtap="popAudio">
+          <image class="opt__icon" src="../../img/pop.png"></image>
+        </view>
+        <view class="opt__item" bindtap="audioPlay">
+          <image wx:if="{{isPlay}}" class="opt__icon" src="../../img/pause.png"></image>
+          <image wx:else class="opt__icon" src="../../img/opt_icon.png"></image>
+        </view>
+
+        <view wx:if="{{haveNext}}" class="opt__item" bindtap="nextAudio">
+          <image class="opt__icon" src="../../img/next.png"></image>
+        </view>
+
+        <view class="opt__item">
+          <!-- <image class="opt__icon" src="../../img/share.png"></image> -->
+          <button open-type='share' style="border:0;" plain>
+            <image class="opt__icon" src="../../img/share.png"></image>
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view class="bg">
+      <image wx:if="{{track_info.album.mid}}" class="bg_img" src="https://y.gtimg.cn/music/photo_new/T002R300x300M000{{track_info.album.mid}}.jpg?max_age=2592000"></image>
+    </view>
+  </view>
+
+  <!-- 包含这首歌的歌单 -->
+  <view wx:if="{{gedan.length > 0}}" class="related_album">
+    <view class="mod_tit">包含这首歌的歌单</view>
+    <view class="qui_list" wx:for="{{gedan}}" wx:key="{{gedan}}" data-id="{{item.tid}}" bindtap='getGd'>
+      <view class="qui_list__item">
+        <view class="qui_list__media">
+          <image class="qui_list__img" src="{{item.imgurl}}"></image>
+        </view>
+
+        <view class="qui_list__bd">
+          <view class="qui_list__box">
+            <view class="qui_list__tit">
+              {{item.dissname}}
+            </view>
+            <view class="qui_list__desc">
+              {{item.creator}}
+            </view>
+          </view>
+
+          <view class="qui_list__arrow">
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 喜欢这首歌的人也听 -->
+  <view wx:if="{{simsongs.length > 0}}" class="similar_song">
+    <view class="mod_tit">
+      喜欢这首歌的人也听
+    </view>
+    <view class="qui_list" wx:for="{{simsongs}}" wx:key="{{simsongs}}" data-name="{{item.name}}" data-id="{{item.id}}" bindtap='addSong'>
+      <view class="qui_list__item">
+        <view class="qui_list__media">
+          <image wx:if="{{item.album.mid}}" class="qui_list__img" src="https://y.gtimg.cn/music/photo_new/T002R150x150M000{{item.album.mid}}.jpg?max_age=2592000"></image>
+        </view>
+
+        <view class="qui_list__bd">
+          <view class="qui_list__box">
+            <view class="qui_list__tit">
+              {{item.name}}
+            </view>
+            <view class="qui_list__desc">
+              {{item.singer[0].name}}
+            </view>
+          </view>
+
+          <view class="qui_list__arrow">
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 歌手 -->
+  <view wx:if="{{singer != []}}" class="similar_song">
+    <view class="mod_tit">
+      歌手
+    </view>
+    <view class="qui_list" wx:for="{{singer}}" wx:key="{{singer}}">
+      <view class="qui_list__item" data-id="{{item.mid}}" bindtap="goSinger">
+        <view class="qui_list__media">
+          <image wx:if="{{item.mid}}" class="qui_list__img" src="https://y.gtimg.cn/music/photo_new/T001R150x150M000{{item.mid}}.jpg?max_age=2592000"></image>
+        </view>
+
+        <view class="qui_list__bd">
+          <view class="qui_list__box">
+            <view class="qui_list__tit">
+              歌手 {{item.name}}
+            </view>
+          </view>
+
+          <view class="qui_list__arrow">
+
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 精彩评论 -->
+  <view wx:if="{{haveCommentlist}}" class="comment">
+    <view class="mod_tit">
+      精彩评论
+    </view>
+    <view class="comment_box">
+      <view class="mod_comment">
+        <view class="mod_comment_list" wx:for="{{commentlist}}" wx:key="{{commentlist}}">
+          <view class="comment_list__item" data-commentid="{{item.uin}}">
+            <view class="comment_list__avatar">
+              <image class="comment_list__avatar_img" src="{{item.avatarurl}}"></image>
+            </view>
+            <view class="comment_list__body">
+              <view class="comment_list__heading">
+                <view class="comment_list__tit">
+                  {{item.nick}}
+                </view>
+                <view class="comment_list__time">
+                  {{item.time}}
+                </view>
+
+              </view>
+
+              <view class="comment_list__cont">
+                <text decode class="comment_list__para">
+                  {{item.rootcommentcontent}}
+                </text>
+              </view>
+
+              <view class="mod_comment_opt">
+                <view class="mod_praise">
+                  <view class="praise__number">
+                    {{item.praisenum}}
+                  </view>
+                  <image class="praise__icon" src="../../img/zan.png"></image>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- MV播放 -->
+  <view wx:if="{{video.length > 0}}" class="js_video">
+    <view class="mod_tit">
+      推荐音乐视频
+    </view>
+    <block wx:for="{{video}}" wx:key="{{video}}">
+      <view class="mod_mv" wx:if="{{videoSrc[index]}}">
+        <view class="mv__media">
+          <view wx:if="{{videoisPlay[index] == false}}">
+            <image src="{{item.picurl}}" class="mv__img"></image>
+            <view class="mv__play" bindtap="playVideo" id="mid{{index-1}}" data-index="{{index}}">
+            </view>
+          </view>
+          <video wx:else id="mid{{index-1}}" class="video_player__source" data-vid="{{item.vid}}" poster="{{item.picurl}}" src="{{videoSrc[index]}}" page-gesture direction="{{direction}}" bindplay="playVideo1" bindpause="pauseVideo"></video>
+        </view>
+
+        <view class="mv__tit">
+          {{item.title}}
+        </view>
+        <view class="mv__desc">
+          <block wx:for="{{item.singers}}" wx:for-item="ss" wx:key="{{ss}}">
+            <view style="display:inline-block;">{{index > 0 ? ' / ' : ''}}{{ss.name}}</view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 播放列表选择框 -->
+
+  <!-- <view class="playlist">
+    <view class="list-wrapper">
+      <view class="list-header">
+        <view class='title'>
+          播放列表({{MusicName.length}})
+          <image src='../../img/delAll.png'></image>
+        </view>
+      </view>
+
+      <scroll-view class="list-content" srcoll-y style='height:480rpx;' scroll-into-view="{{toMusicName}}" scroll-with-animation>
+        <block wx:for="{{MusicName}}" wx:key="{{MusicName}}">
+          <view class="item">
+            {{item}}
+            <image src="../../img/del.png"></image>
+          </view>
+        </block>
+      </scroll-view>  
+    </view>
+  </view> -->
+  <view id="mask" wx:if="{{showList}}" catchtap="close" animation="{{animationMask}}"></view>
+  <view class="playlist"  animation="{{animationData}}">
+    <view class="title">播放列表({{MusicName.length}})</view>
+    <scroll-view class="list" scroll-y style="height:538rpx;" scroll-into-view="S{{num}}">
+      <block wx:for="{{MusicName}}" wx:key="{{MusicName}}">
+        <view bindtap="changeMusic" data-num="{{index}}" style="color:{{index == num ? '#31c27c':''}};" id="S{{index}}">{{item}}<image catchtap="del" data-num="{{index}}" class="close" src="../../img/del.png"></image></view>
+        
+      </block>
+    </scroll-view>
+    <view class="list_close" bindtap='close'>关闭</view>
+  </view>
+</view>

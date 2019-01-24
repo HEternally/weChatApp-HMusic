@@ -1,0 +1,71 @@
+<view class="searchPage">
+  <!-- 输入框 -->
+  <!-- <view class="search-box-wrapper">
+    <view class="search-box">
+      <image class="icon" src="../../img/search.png"></image>
+      <input class="search_input" value='{{sInput}}' placeholder='搜索歌曲、歌手' placeholder-class="input-placeholder" bindfocus="inputFocus" bindconfirm="searchKey" bindinput="searchInput"></input>
+      <image class="cc {{isNull?'hide':''}}" src="../../img/close1.png" bindtap='clearInput'></image>
+    </view>
+    <view class="cancel {{isCancel?'':'hide'}}" bindtap='cancel'>取消</view>
+  </view> -->
+
+  <view class="page__bd">
+    <view class="weui-search-bar">
+        <view class="weui-search-bar__form">
+            <view class="weui-search-bar__box">
+                <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                <input type="text" class="weui-search-bar__input" placeholder="搜索歌曲、歌手" value="{{sInput}}" focus="{{inputShowed}}" bindinput="searchInput" bindconfirm="searchKey"/>
+                <view class="weui-icon-clear {{isNull?'hide':''}}" bindtap="clearInput">
+                    <icon type="clear" size="14"></icon>
+                </view>
+            </view>
+            <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="inputFocus">
+                <icon class="weui-icon-search" type="search" size="14"></icon>
+                <view class="weui-search-bar__text">搜索歌曲、歌手</view>
+            </label>
+        </view>
+        <view class="weui-search-bar__cancel-btn {{isCancel?'':'hide'}}" bindtap="cancel">取消</view>
+    </view>
+  </view>
+
+  <!-- 热门搜索 -->
+  <view class="hot_keys {{hotHide?'hide':''}}">
+    <view class="title">热门搜索</view>
+    <view class="res_tags">
+      <block wx:for="{{list}}" wx:key="{{list}}">
+        <view class="list" data-key="{{item.k}}" bindtap='searchThisKey'>{{item.k}}</view>
+      </block>
+    </view>
+  </view>
+  <!-- 搜索记录模块 -->
+  <view class="record_keys {{isHide?'':'hide'}}">
+    <block wx:for="{{keys}}" wx:key="{{keys}}">
+      <view class="key_list">
+        <image class="clock" src="../../img/clock.png"></image>
+        <view class="key_text" data-key="{{item}}" bindtap='searchThisKey'>{{item}}</view>
+        <image data-key="{{item}}" class="close" src='../../img/close.png' bindtap='clearKey'></image>
+      </view>
+    </block>
+    <view class="clear {{haveKeys?'':'hide'}}" bindtap='clearKeys'>清除搜索记录</view>
+  </view>
+  <!-- 搜索结果模块 -->
+  
+  <scroll-view wx:if="{{searchResult.length != 0}}" scroll-y style="height:100vh;" bindscrolltolower="scroll" lower-threshold="50" scroll-with-animation enable-back-to-top>
+  <view class="search_result {{havaResult?'':'hide'}}">
+    <view class="search_page" wx:if="{{singer.singerid}}" data-singermid="{{singer.singermid}}" data-id="{{singer.singerid}}" bindtap='goToSinger'>
+        <image class="media" wx:if="{{singer.singermid}}" src="https://y.gtimg.cn/music/photo_new/T001R68x68M000{{singer.singermid}}.jpg?max_age=2592000"></image>
+        <view class="title">{{singer.singername}}</view>
+        <view class="name">单曲:{{singer.songnum}} 专辑:{{singer.albumnum}}</view> 
+      </view>
+    <block wx:for="{{searchResult}}" wx:key="{{searchResult}}">
+      <view class="search_page" data-name="{{item.songname}}" data-id="{{item.songid}}" bindtap='goToplay'>
+        <image class="Micon" src="../../img/icon.png"></image>
+        <view class="title">{{item.songname}}</view>
+        <view class="name">{{item.singer[0].name}}</view> 
+      </view>
+    </block>
+    <view class="loadAll {{isLoadAll?'':'hide'}}">已加载全部</view>
+  </view>
+  </scroll-view>
+    
+</view>

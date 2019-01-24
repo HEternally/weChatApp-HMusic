@@ -1,0 +1,14 @@
+<view class="rank">
+  <block wx:for="{{rank}}" wx:for-item="list" wx:key="list">
+    <view class="list" data-id="{{list.id}}" bindtap='goTonext'>
+      <image class="picUrl" src="{{list.picUrl}}"></image>
+      <image class="radio_icon" src="../../img/music.png"></image>
+      <text class="listNum">{{list.listenCount/10000}}万</text>
+      <view class="songList">
+        <block wx:for="{{list.songList}}" wx:for-item="songlist" wx:key="songlist">
+          <view class="song">{{index+1}} {{songlist.songname}}-{{songlist.singername}}</view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>

@@ -1,0 +1,68 @@
+<!--index.wxml-->
+<view class="container">
+<!-- <view style="width:100%;height:168rpx;">
+  <official-account bindload=""></official-account>
+</view> -->
+  <view class="page__bd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" class="weui-search-bar__input" placeholder="搜索歌曲、歌手" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" bindtap="go_search">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索歌曲、歌手</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+  </view>
+
+  <view class="main" wx:if="{{loading}}">
+    <!-- 轮播图 -->
+    <swiper class="banner" indicator-dots="true" indicator-color="rgba(255,255,255,.3)" indicator-active-color="#fff" autoplay='true' interval='2000' circular='true'>
+      <block wx:for="{{banner}}" wx:key="{{banner}}">
+        <swiper-item data-id="{{item.linkUrl}}">
+          <image src="{{item.picUrl}}" class="banner-image"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 电台 -->
+    <view class="mod_radio_list">
+      <view class="list_title">电台</view>
+      <view class="radio_wrapper">
+        <block wx:for="{{radioList}}" wx:key="{{radioList}}">
+          <view class="radio_img" data-id="{{item.radioid}}" bindtap="go_radio">
+            <image class="radio_image" src="{{item.picUrl}}"></image>
+            <view class="radio_text">{{item.Ftitle}}</view>
+            <image class="radio_play" src="../../img/play.png"></image>
+          </view>
+        </block>
+        <view class="clearfix"></view>
+      </view>
+    </view>
+    <!-- 热门歌单 -->
+    <view class="mod_radio_list">
+      <view class="list_title">热门歌单</view>
+      <view class="radio_wrapper">
+        <block wx:for="{{songList}}" wx:key="{{songList}}">
+          <view class="radio_img" data-id="{{item.id}}" bindtap="getGedan">
+            <image class="radio_image" src="{{item.picUrl}}"></image>
+            <view class="radio_text" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{item.songListDesc}}</view>
+            <view class="radio_text2">{{item.songListAuthor}}</view>
+            <image class="radio_icon" src="../../img/music.png"></image>
+            <image class="radio_play" data-id="{{item.id}}" src="../../img/play.png" catchtap='selectHot'></image>
+            <text class="radio_num">{{item.accessnum}}</text>
+          </view>
+        </block>
+        <view class="clearfix"></view>
+      </view>
+    </view>
+    <!-- <Music-play></Music-play> -->
+  </view>
+
+</view>

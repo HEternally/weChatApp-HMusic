@@ -1,0 +1,173 @@
+page {
+  background: #fff;
+}
+.main {
+  position: relative;
+  /* padding-bottom: 30rpx; */
+  overflow: hidden;
+}
+.main_bd {
+  position: relative;
+  z-index: 4;
+}
+.song_name {
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  margin-top: 40rpx;
+  font-size:18px;
+  font-weight: 300;
+}
+.song_name .song_name__text {
+    max-width: 222rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+}
+.song_name .icon_playlist {
+    position: relative;
+    display: block;
+    width: 36rpx;
+    height: 36rpx;
+    margin: 0 -44rpx 0 8rpx;
+}
+.icon_playlist::after {
+  content: "";
+    position: absolute;
+    top: -100%;
+    left: -100%;
+    width: 300%;
+    height: 300%;
+}
+.singer_name {
+  margin: 0 40rpx 30rpx;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+  color:grey;
+}
+.singer_name .item_name {
+  display: inline-block;
+}
+.song_info_bd {
+  position: relative;
+  /* height: 300rpx; */
+  height:80%;
+}
+.song_info_bd .album_cover {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 2;
+  width: 468rpx;
+  height: 468rpx;
+  margin-left: -234rpx;
+  box-shadow: 0 1rpx 4px rgba(0,0,0,.2);
+  display: none;
+}
+.album_cover__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lyric {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  width: 100%;
+  height: 100%;
+}
+.lyric .lyric__bd {
+  width: 100%;
+  /* height: 300rpx; */
+  height:100%;
+  overflow: hidden;
+  -webkit-mask: -webkit-linear-gradient(top,rgba(0,0,0,0),#fff 25%,#fff 75%,rgba(0,0,0,0));
+}
+.lyric__para {
+  line-height: 2;
+  margin: 0 40rpx;
+  text-align: center;
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  font-size: 15px;
+  /* color: #31c27c; */
+}
+/* .opt {
+  position: relative;
+  height:180rpx;
+}
+.opt__item {
+  position: absolute;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  width:80rpx;
+  height:80rpx;
+  margin: 0 40rpx;
+  border: solid 1px rgba(0,0,0,.2);
+  border-radius: 100%;
+  top:50%;
+  left:45%;
+  transform:translate(-50%,-50%);
+}
+.opt__icon {
+  display: block;
+  width: 44rpx;
+  height: 44rpx;
+  fill: #000;
+} */
+.opt {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    height: 180rpx;
+}
+.opt__item {
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+    width:76rpx;
+    height:76rpx;
+    margin: 0 40rpx;
+    /* border: solid 1px rgba(0,0,0,.2); */
+    border-radius: 100%;
+}
+.opt__icon {
+    display: block;
+    width: 64rpx;
+    height: 64rpx;
+    fill: #000;
+}
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100%;
+  height:750rpx;
+}
+.bg_img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  opacity: .06;
+  -webkit-transform: scale(1.2);
+}

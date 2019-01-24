@@ -1,0 +1,26 @@
+<!--logs.wxml-->
+<view class="container log-list">
+<scroll-view scroll-y style="height:100%;white-space:nowrap;" scroll-into-view="{{toSingerNum}}" enable-back-to-top bindscroll="scroll" scroll-with-animation scroll-top="{{scrollTop}}">
+  <view class="list-group" wx:for="{{logs}}" wx:for-item="group" wx:key="{{group}}">
+    <view class="title" id="{{group.title}}">{{group.title}}</view>
+    <block wx:for="{{group.items}}" wx:for-item="user" wx:key="{{user}}">
+      <view id="{{user.mid}}" class="list-group-item" bindtap='toSinger'>
+        <image class="icon" src="{{user.avatar}}" lazy-load="true"></image>
+        <text class="log-item">{{user.name}}</text>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+  <!-- 侧边字母导航 -->
+  <view class="list-shortcut">
+    <block wx:for="{{logs}}" wx:key="{{logs}}">
+      <text class="{{currentIndex===index?'current':''}}" data-id="{{item.title}}" bindtap='scrollToview'>{{item.title}}</text>
+    </block>
+  </view>
+  <!-- 固定在顶部的字母导航 -->
+  <view class="list-fixed {{fixedTitle=='' ? 'hide':''}}" style="transform:translate3d(0,{{fixedTop}}px,0);">
+    <view class="fixed-title">
+      {{fixedTitle}}
+    </view>
+  </view>
+</view>

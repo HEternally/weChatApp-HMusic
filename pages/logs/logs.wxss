@@ -1,0 +1,77 @@
+.log-list {
+  display: flex;
+  flex-direction: column;
+  /* padding-bottom:60rpx; */
+}
+.log-item {
+  margin: 10rpx;
+}
+.title {
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-left: 40rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 1);
+  background: #ccc;
+  margin-top:60rpx;
+}
+.title:first-child {
+  margin-top:0;
+}
+.list-group-item {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 40rpx 0 0 60rpx;
+}
+.list-group-item:last-child {
+  padding-bottom: 60rpx;
+}
+.list-group-item .icon {
+  width:100rpx;
+  height:100rpx;
+  border-radius: 50%;
+}
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.list-shortcut {
+  position: fixed;
+  z-index: 30;
+  right: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 20px;
+  padding: 20px 0;
+  border-radius: 10px;
+  text-align: center;
+  background: rgba(0,0,0,.3);
+  font-family: Helvetica;
+}
+.list-shortcut text {
+  display: block;
+  padding: 3px;
+  line-height: 1;
+  color: #fff;
+  font-size: 24rpx;
+}
+.current{
+  color: #ffcd32 !important;
+}
+.list-fixed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.fixed-title {
+  height:60rpx;
+  line-height:60rpx;
+  padding-left:40rpx;
+  font-size:24rpx;
+  color:rgba(255, 255, 255, 1);
+  background:#ccc;
+}

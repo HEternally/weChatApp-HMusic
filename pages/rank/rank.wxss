@@ -1,0 +1,59 @@
+.rank {
+  padding-bottom: 40rpx;
+}
+.list {
+  position: relative;
+  display: flex;
+  margin: 0 40rpx;
+  padding-top: 40rpx;
+  height: 200rpx;
+}
+.list image.picUrl {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 200rpx;
+  flex: 0 0 w00rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+.list  image.radio_icon {
+  position: absolute;
+  width:40rpx;
+  height:40rpx;
+  left:14rpx;
+  bottom:10rpx;
+}
+.list .listNum {
+  position:absolute;
+  left:70rpx;
+  bottom:10rpx;
+  color:#fff;
+  font-size:12px;
+}
+.list .songList {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 0 40rpx;
+  height: 200rpx;
+  overflow: hidden;
+  background: #fff;
+  color: hsla(0,0%,100%,.3);
+  font-size: 12px;
+}
+.list .songList .song {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  line-height: 52rpx;
+  color:#000;
+}

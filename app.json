@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/rank/rank",
+    "pages/search/search",
+    "pages/gedan/gedan",
+    "pages/playSong/playSong",
+    "pages/singer/singer",
+    "pages/top/top",
+    "pages/share/share"
+  ],
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "HMusic",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "推荐"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "text": "歌手"
+      },
+      {
+        "pagePath": "pages/rank/rank",
+        "text": "排行榜"
+      },
+      {
+        "pagePath": "pages/playSong/playSong",
+        "text": "播放器"
+      }
+    ],
+    "position": "top"
+  }
+}

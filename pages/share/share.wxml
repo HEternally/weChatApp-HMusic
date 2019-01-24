@@ -1,0 +1,66 @@
+<view wx:if="{{haveMusicStorage}}" class="playSong" style="height:100%;">
+  <view class="main" style="height:100%;">
+    <view class="main_bd"  style="height:70%;">
+      <view class="song_info" style="height:70%;">
+        <view class="song_info_hd">
+          <view class="song_name">
+            <view class="song_name__text">
+              {{track_info.title}}
+            </view>
+          </view>
+
+          <view class="singer_name">
+            <block wx:for="{{singer}}" wx:key="singer">
+              <view class="item_name">{{index > 0 ? ' / ' : ''}}{{item.name}}</view>
+            </block>
+          </view>
+        </view>
+
+        <view class="song_info_bd">
+          <view class="album_cover">
+            <image wx:if="{{track_info.album.mid}}" class="album_cover__img" src="https://y.gtimg.cn/music/photo_new/T002R300x300M000{{track_info.album.mid}}.jpg?max_age=2592000"></image>
+          </view>
+
+          <view class="lyric">
+            <view class="lyric__bd" style="position:reative;">
+              <scroll-view scroll-y style="position:absolute;bottom:0;height:80%;white-space:nowrap;font-size:15px;" scroll-into-view="{{toView}}" upper-threshold="2000" scroll-with-animation scroll-top="40rpx;">
+                <block wx:for="{{lyrics}}" wx:for-item="lyric" wx:key="{{lyric}}">
+                  <view style="color:{{toView == lyric.id ? '#31c27c':''}}" class="lyric__para" data-time="{{lyric.t}}" id="{{lyric.id}}">
+                    {{lyric.c}}
+                  </view>
+                </block>
+              </scroll-view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="opt">
+        <view wx:if="{{havePop}}" class="opt__item" bindtap="" style="opacity:.5;">
+          <image class="opt__icon" src="../../img/pop.png"></image>
+        </view>
+        <view class="opt__item" bindtap="audioPlay">
+          <image wx:if="{{isPlay}}" class="opt__icon" src="../../img/pause.png"></image>
+          <image wx:else class="opt__icon" src="../../img/opt_icon.png"></image>
+        </view>
+
+        <view wx:if="{{haveNext}}" class="opt__item" bindtap="" style="opacity:.5;">
+          <image class="opt__icon" src="../../img/next.png"></image>
+        </view>
+
+        <!-- <view class="opt__item"> -->
+          <!-- <image class="opt__icon" src="../../img/share.png"></image> -->
+          <!-- <button open-type='share' style="border:0;" plain><image class="opt__icon" src="../../img/share.png"></image></button> -->
+        <!-- </view> -->
+      </view>
+
+      <view class='opt'>
+        <button type="primary" bindtap="goIndex">回到首页</button>
+      </view>
+    </view>
+
+    <view class="bg" style="height:100%;">
+      <image wx:if="{{track_info.album.mid}}" class="bg_img" src="https://y.gtimg.cn/music/photo_new/T002R300x300M000{{track_info.album.mid}}.jpg?max_age=2592000"></image>
+    </view>
+  </view>
+</view>

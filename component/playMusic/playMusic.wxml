@@ -1,0 +1,28 @@
+<!--component/playMusic/playMusic.wxml-->
+<view class="player">
+  <view class="normal-player" wx:if="{{fullScreen}}">
+    <view class="background">
+      <image wx:if="{{currentSong.image}}" src="{{currentSong.image}}"></image>
+    </view>
+
+    <view class="top">
+      <view class="subtitle">{{currentSong.singer}}</view>
+    </view>
+    <view class="middle" catchtouchstart="middleTouchStart" catchtouchmove="middleTouchMove" catchtouchend="middleTouchEnd">
+      <view class="middle-l">
+        <view class="cd-wrapper">
+          <view class="cd play" style="animation-play-state:{{playing ? '': 'paused'}}">
+            <image wx:if="{{currentSong.image}}" wsrc="{{currentSong.image}}" class="image"></image>
+          </view>
+        </view>
+        <view class="playing-lyric-wrapper">
+          <view class="playing-lyric">{{playingLyric}}</view>
+        </view>
+      </view>
+
+      <scroll-view class="middle-r" scroll-y style="">
+      
+      </scroll-view>
+    </view>
+  </view>
+</view>
